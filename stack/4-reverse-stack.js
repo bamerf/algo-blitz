@@ -19,26 +19,29 @@ function push(stack, item) {
   stack.push(item);
 }
 
-function reverse(arr) {
-  if (arr.length == 0) {
+// unshift method implemented only with push and pop
+function unshift(arr, value) {
+  if (arr.length === 0) {
+    arr.push(value);
     return;
   }
+
+  const popped = arr.pop();
+
+  unshift(arr, value);
+
+  arr.push(popped);
+}
+
+function reverse(arr) {
+  if (arr.length === 0) {
+    return;
+  }
+
+  // keeps value for each unique frame in the stack
   let popped_value = arr.pop();
 
   reverse(arr);
-
-  function unshift(arr, value) {
-    if (arr.length == 0) {
-      arr.push(value);
-      return;
-    }
-
-    const popped = arr.pop();
-
-    unshift(arr, value);
-
-    arr.push(popped);
-  }
 
   unshift(arr, popped_value);
 }
