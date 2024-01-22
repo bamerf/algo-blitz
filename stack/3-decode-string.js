@@ -36,14 +36,14 @@ Example 3:
 Input: s = "2[abc]3[cd]ef"
 Output: "abcabccdcdcdef"
 
-3[a2[c]]
-       ^
-stack = [""]
+2[abc]3[cd]ef
+           ^
+stack = []
 currNum = 0
-currS = 'accaccacc'
+currS = 'abcabdcdcdcdef'
 
 num = 3
-prev = ''
+prev = 'abcabc'
 
 */
 
@@ -79,4 +79,4 @@ function decodeString(string) {
   return currS;
 }
 
-console.log(decodeString('3[a2[c]]'));
+console.log(decodeString('2[abc]3[cd]ef'));
