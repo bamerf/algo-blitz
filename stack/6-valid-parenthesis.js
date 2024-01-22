@@ -71,12 +71,6 @@ function validParanthesis(string) {
     '[': ']',
   };
 
-  // stack = [(, {, [, ]
-  // symbol = (
-  // popped = [
-  // ({[]})
-  //    ^
-
   for (let i = 0; i < string.length; i++) {
     const symbol = string[i];
 
