@@ -49,13 +49,15 @@ prev = 'abcabc'
 
 function decodeString(string) {
   const stack = [];
-  let currNum = 0;
+  let currNum = '';
   let currS = '';
+
+  console.log(currNum);
 
   for (let char of string) {
     if (char === '[') {
       stack.push(currS);
-      stack.push(currNum);
+      stack.push(Number(currNum));
       currS = '';
       currNum = 0;
       continue;
@@ -69,7 +71,7 @@ function decodeString(string) {
     }
 
     if (!isNaN(char)) {
-      currNum += Number(char);
+      currNum += char;
       continue;
     }
 
@@ -79,4 +81,4 @@ function decodeString(string) {
   return currS;
 }
 
-console.log(decodeString('2[abc]3[cd]ef'));
+console.log(decodeString('10[leetcode]'));
