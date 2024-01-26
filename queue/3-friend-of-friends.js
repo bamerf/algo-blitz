@@ -105,7 +105,7 @@ helper(n - 1, friends, visited)
 */
 
 function helper(queue, depth, friends, visitedFriends) {
-  if (queue.length === 0 || depth === 0) {
+  if (queue.length === 0 || depth < 0) {
     return visitedFriends;
   }
 
@@ -132,11 +132,13 @@ function findSuggestedFriendsWithDepth(friends, name, depth) {
   const visitedFriends = new Set();
   const queue = [name];
 
-  if (depth === 0) {
-    return name;
-  } else {
-    return helper(queue, depth, friends, visitedFriends);
-  }
+  return helper(queue, depth, friends, visitedFriends);
 }
 
+// [ 'Mike', 'Sophie', 'James', 'Tony' ]
+console.log(findSuggestedFriendsWithDepth(friends, 'Daniel', 1));
+
+// [ Daniel, James, Luke, Mike, Tony, Eun Ji, Sophie ]
 console.log(findSuggestedFriendsWithDepth(friends, 'Daniel', 2));
+
+console.log(findSuggestedFriendsWithDepth(friends, 'Daniel', 3));
