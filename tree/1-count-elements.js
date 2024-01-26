@@ -50,7 +50,6 @@ class TreeNode {
 
 /*
 
-
    1
   / \
  2   3
@@ -58,7 +57,6 @@ class TreeNode {
    4   5
       / 
      6 
-
 
 */
 
@@ -84,17 +82,38 @@ const rootTree = {
   },
 };
 
-function countTree(root) {
-  if (!root) {
-    return 0;
-  }
+const countElements = (root) => {
+  if (!root) return 0;
 
   let count = 1;
-
-  count += countTree(root.left);
-  count += countTree(root.right);
-
+  count += countElements(root.left);
+  count += countElements(root.right);
   return count;
-}
+};
 
-console.log(countTree(rootTree));
+const countElements2 = (root) => {
+  let count = 0;
+  function helper(node) {
+    if (!node) return;
+    helper(node.left);
+    helper(node.right);
+    count++;
+  }
+  helper(root);
+  return count;
+};
+
+console.log(countElements(rootTree));
+
+console.log(countElements2(null)); // 0
+console.log(countElements2(new TreeNode(1, new TreeNode(2), new TreeNode(3)))); // 3
+console.log(
+  countElements2(
+    new TreeNode(
+      2,
+      new TreeNode(29, new TreeNode(26)),
+      new TreeNode(4, null, new TreeNode(2, new TreeNode(9)))
+    )
+  )
+); // 6
+console.log(countElements2(new TreeNode())); // 1
