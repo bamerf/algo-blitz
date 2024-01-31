@@ -49,10 +49,9 @@ const queueRootTree = {
 };
 
 function bfs(root, val) {
-  const queue = [];
-  queue.push(root);
+  const queue = [root];
 
-  while (queue.length !== 0) {
+  while (queue.length > 0) {
     const node = queue.shift();
 
     if (node.val === val) {
