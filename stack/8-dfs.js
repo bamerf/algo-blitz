@@ -69,14 +69,14 @@ const dfsPreOrder = (root, value) => {
   }
 
   if (root.left) {
-    const left = dfsInOrder(root.left, value);
+    const left = dfsPreOrder(root.left, value);
     if (left !== null) {
       return left;
     }
   }
 
   if (root.right) {
-    const right = dfsInOrder(root.right, value);
+    const right = dfsPreOrder(root.right, value);
     if (right !== null) {
       return right;
     }
@@ -91,14 +91,14 @@ const dfsPostOrder = (root, value) => {
   }
 
   if (root.left) {
-    const left = dfsInOrder(root.left, value);
+    const left = dfsPostOrder(root.left, value);
     if (left !== null) {
       return left;
     }
   }
 
   if (root.right) {
-    const right = dfsInOrder(root.right, value);
+    const right = dfsPostOrder(root.right, value);
     if (right !== null) {
       return right;
     }
