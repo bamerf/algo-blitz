@@ -71,9 +71,7 @@ function validParanthesis(string) {
     '[': ']',
   };
 
-  for (let i = 0; i < string.length; i++) {
-    const symbol = string[i];
-
+  for (let symbol of string) {
     if (map[symbol]) {
       stack.push(symbol);
     } else {
