@@ -174,7 +174,21 @@ function longestPath(root) {
 
   helper(root);
 
-  return path;
+  return stack;
 }
 
 console.log(longestPath(rootTree));
+
+/*
+5. Find depth recursive.
+*/
+
+function heightRecursive(node) {
+  if (!node) {
+    return 0;
+  }
+
+  return 1 + Math.max(heightRecursive(node.left), heightRecursive(node.right));
+}
+
+console.log(heightRecursive(rootTree));
