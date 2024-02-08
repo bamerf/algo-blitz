@@ -69,7 +69,7 @@ def treeLayers(root):
  return results_map
 */
 
-function rightNodeValues(root) {
+function treeLayers(root) {
   const map = new Map();
 
   function helper(node) {
@@ -94,4 +94,4 @@ function rightNodeValues(root) {
   return map;
 }
 
-console.log(rightNodeValues(rootTree));
+console.log(treeLayers(rootTree));
