@@ -69,24 +69,16 @@ if current === split[count] -> count++
 split = [c, a, t]
             ^
 
+cat
 catcowcat
- ^
+^
 */
 
 // solve with recursion
 function strDist(word, sub) {
-  function helper(word, sub) {
-    if (word.indexOf(sub) === -1) {
-      return '';
-    }
-
-    let start = word.indexOf(sub);
-    let rest = word.substring(start + sub.length);
-    return sub + helper(rest, sub) + sub;
-  }
-
-  const extracted = helper(word, sub);
-  console.log('string:', extracted);
+  let start = word.indexOf(sub);
+  let end = word.lastIndexOf(sub) + sub.length;
+  return end - start;
 }
 
 console.log(strDist('catcowcat', 'cat') == 9);
