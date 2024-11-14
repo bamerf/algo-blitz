@@ -43,45 +43,38 @@ const matrix = [
   [7, 8, 9],
 ];
 
-function solution(matrix) {
-  if (!matrix || matrix.length === 0) return [];
-
+function solution(m) {
+  if (!m || m.length === 0) return [];
   const result = [];
   let top = 0;
   let left = 0;
-  let bottom = matrix.length - 1;
-  let right = matrix[0].length - 1;
+  let bottom = m.length - 1;
+  let right = m[0].length - 1;
 
   while (top <= bottom && left <= right) {
-    // Traverse top row
-    // i=2 right=2, x3 iterations
-    for (let i = 0; i <= right; i++) {
-      result.push(matrix[top][i]);
+    for (let i = left; i <= right; i++) {
+      result.push(m[top][i]);
     }
     top++;
 
-    // Traverse right column
-    // i=2 right=2 bottom=2, x2 iterations
     for (let i = top; i <= bottom; i++) {
-      result.push(matrix[i][right]);
+      result.push(m[i][right]);
     }
     right--;
 
-    // if (top <= bottom) {
-    //     // Traverse bottom row
-    //     for (let i = right; i >= left; i--) {
-    //         result.push(matrix[bottom][i]);
-    //     }
-    //     bottom--;
-    // }
+    if (top <= bottom) {
+      for (let i = right; i >= left; i--) {
+        result.push(m[bottom][i]);
+      }
+      bottom--;
+    }
 
-    // if (left <= right) {
-    //     // Traverse left column
-    //     for (let i = bottom; i >= top; i--) {
-    //         result.push(matrix[i][left]);
-    //     }
-    //     left++;
-    // }
+    if (left <= right) {
+      for (let i = bottom; i >= top; i--) {
+        result.push(m[i][left]);
+      }
+      left++;
+    }
   }
 
   return result;
