@@ -48,51 +48,49 @@ function solution(balances, requests) {
       const secondAccountIndex = Number(secondAccount) - 1;
 
       if (
-        requestSplit.indexOf(firstAccount) !== firstAccountIndex ||
-        requestSplit.indexOf(secondAccount) !== secondAccountIndex
+        firstAccountIndex < 0 ||
+        firstAccountIndex >= balancesClone.length ||
+        secondAccountIndex < 0 ||
+        secondAccountIndex >= balancesClone.length
       ) {
-        console.log('nom account');
-        invalid = [index + 1];
+        invalid = [-index - 1];
         return;
       }
 
-      if (amount > balancesClone[firstAccountIndex]) {
-        invalid = [index + 1];
+      const numAmount = Number(amount);
+      if (numAmount > balancesClone[firstAccountIndex]) {
+        invalid = [-index - 1];
         return;
       }
 
-      balancesClone[firstAccountIndex] =
-        balancesClone[firstAccountIndex] - amount;
-      balancesClone[secondAccountIndex] =
-        balancesClone[secondAccountIndex] + amount;
+      balancesClone[firstAccountIndex] -= numAmount;
+      balancesClone[secondAccountIndex] += numAmount;
     } else {
       const [type, account, amount] = requestSplit;
-      console.log({ type, account, amount });
       const accountIndex = Number(account) - 1;
-      balancesClone.indexOf(accountIndex);
-      if (requestSplit.indexOf(account) !== accountIndex) {
-        console.log('no account');
-        invalid = [index + 1];
+
+      if (accountIndex < 0 || accountIndex >= balancesClone.length) {
+        invalid = [-index - 1];
         return;
       }
 
-      if (type === 'withdraw' && amount > balancesClone[accountIndex]) {
-        console.log('amount is greater');
-        invalid = [index + 1];
+      const numAmount = Number(amount);
+      if (type === 'withdraw' && numAmount > balancesClone[accountIndex]) {
+        invalid = [-index - 1];
         return;
       }
 
       if (type === 'withdraw') {
-        balancesClone[accountIndex] = balancesClone[accountIndex] - amount;
+        balancesClone[accountIndex] -= numAmount;
       }
 
       if (type === 'deposit') {
-        balancesClone[accountIndex] = balancesClone[accountIndex] + amount;
+        balancesClone[accountIndex] += numAmount;
       }
     }
   });
 
-  if (invalid.length > 0) {
+  if (invalid) {
     return invalid;
   }
 
