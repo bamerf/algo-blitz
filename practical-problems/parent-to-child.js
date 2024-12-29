@@ -21,13 +21,10 @@ Output:
 */
 
 function parentToChild(relations) {
-  // Handle empty input case
   if (!relations.length) return 'No family relations';
 
-  // Create a map to store parent -> children relationships
   const parentMap = new Map();
 
-  // Process each relation
   relations.forEach(([child, parent1, parent2]) => {
     // Add child to parent1's list
     if (!parentMap.has(parent1)) {
@@ -35,14 +32,12 @@ function parentToChild(relations) {
     }
     parentMap.get(parent1).add(child);
 
-    // Add child to parent2's list
     if (!parentMap.has(parent2)) {
       parentMap.set(parent2, new Set());
     }
     parentMap.get(parent2).add(child);
   });
 
-  // Convert map to required string format
   const result = [];
   for (const [parent, children] of parentMap) {
     result.push(`${parent} is the parent of ${[...children].join(', ')}`);
