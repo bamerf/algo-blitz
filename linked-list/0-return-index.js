@@ -59,11 +59,32 @@ is value equal k
 recursive call increment counter and move forward
 */
 
+// iterative
+function firstIndexInLL(head, target) {
+  if (head === null) {
+    return -1;
+  }
+
+  let counter = 0;
+
+  while (head !== null) {
+    if (head.value === target) {
+      return counter;
+    }
+
+    head = head.next;
+    counter++;
+  }
+
+  return -1;
+}
+
 function Node(value, next = null) {
   this.value = value;
   this.next = next;
 }
 
+// recursive
 function firstIndexInLL(head, target, counter = 0) {
   if (!head) {
     return -1;
