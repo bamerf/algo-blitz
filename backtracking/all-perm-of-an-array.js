@@ -23,6 +23,7 @@
  * Total recursive calls: 1 + n + n*(n-1) + ... + n! ≈ O(n!)
  * Each base case does O(n) work to copy array → O(n! * n)
  */
+
 function generatePermutations(nums) {
   const results = [];
 
@@ -51,3 +52,5 @@ function generatePermutations(nums) {
 
   return results;
 }
+
+generatePermutations([1, 2, 3]);
